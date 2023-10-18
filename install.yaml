@@ -5,10 +5,14 @@ name: ddev-drupal-core-dev
 project_files:
   - docker-compose.core-dev-selenium.yaml
   - phpunit.xml
+  - commands/web/drupal
+  - core-dev/src/Command/AdminLoginCommand.php
+  - core-dev/src/Command/BootCommand.php
+  - core-dev/src/Command/CacheCommand.php
 
 post_install_actions:
-  - mv ~/.ddev/phpunit.xml ~/core/phpunit.xml
-  - perl -pi -e "s/DRUPAL_CORE_DDEV_URL/${DDEV_PRIMARY_URL}/g" ~/core/phpunit.xml
+  - mv phpunit.xml ../core/phpunit.xml
+  - sed -i "s|DRUPAL_CORE_DEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
 
 removal_actions:
-  - rm ~/core/phpunit.xml
+  - rm core/phpunit.xml

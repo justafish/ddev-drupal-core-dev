@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+
+<?php
+
+#ddev-generated
+## Description: Run commands from the core drupal script
+## Usage: drupal
+## Example: "ddev drupal --help"
+## ExecRaw: true
+
+/**
+ * @file
+ * Provides CLI commands for Drupal.
+ */
+
+use Drupal\Core\Command\GenerateTheme;
+use Drupal\Core\Command\InstallCommand;
+use Symfony\Component\Console\Application;
+use DrupalCoreDev\Command\CacheCommand;
+use DrupalCoreDev\Command\AdminLoginCommand;
+
+if (PHP_SAPI !== 'cli') {
+    return;
+}
+
+$composer_root = getenv('DDEV_COMPOSER_ROOT');
+$loader = require_once $composer_root . '/autoload.php';
+$loader->addPsr4('DrupalCoreDev\\', $composer_root . '/.ddev/core-dev/src/');
+
+$application = new Application('drupal', \Drupal::VERSION);
+
+$application->add(new InstallCommand($loader));
+$application->add(new GenerateTheme());
+$application->add(new CacheCommand($loader));
+$application->add(new AdminLoginCommand($loader));
+
+$application->run();
