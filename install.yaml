@@ -23,6 +23,9 @@ post_install_actions:
   - cp core-dev/phpunit-firefox.xml ../core/phpunit.xml
   - sed -i "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
   - mkdir -p ../test_output
+  - mkdir -p ../vendor
+  - mkdir -p ../sites/simpletest
+  - mkdir -p ../sites/default/files
   - cp core-dev/gitignore ../test_output/.gitignore
   - cp core-dev/gitignore ../vendor/.gitignore
   - cp core-dev/gitignore ../sites/simpletest/.gitignore
