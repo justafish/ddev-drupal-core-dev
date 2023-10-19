@@ -3,12 +3,16 @@
 name: ddev-drupal-core-dev
 
 project_files:
+  - web-build/Dockerfile
   - docker-compose.core-dev-selenium.yaml
   - core-dev/phpunit-firefox.xml
   - core-dev/phpunit-chrome.xml
   - commands/web/drupal
   - commands/web/phpunit
+  - commands/host/nightwatch
+  - commands/web/_nightwatch
   - core-dev/gitignore
+  - core-dev/.env
   - core-dev/src/Command/AdminLoginCommand.php
   - core-dev/src/Command/BootCommand.php
   - core-dev/src/Command/CacheCommand.php
@@ -31,6 +35,12 @@ post_install_actions:
     if ! grep -q "\/\.ddev" ../.git/info/exclude; then
       echo "/.ddev" >> ../.git/info/exclude
     fi
+  - |
+    if ! grep -q "\/sites\/sites.php" ../.git/info/exclude; then
+      echo "/sites/sites.php" >> ../.git/info/exclude
+    fi
+  - cp core-dev/.env ../core/.env
+  - cd ../core && yarn install
 
 removal_actions:
   - rm core/phpunit.xml
@@ -40,3 +50,5 @@ removal_actions:
   - rm -f sites/default/files/.gitignore
   - sed '/\/sites\/default\/settings\.php/d' -i .git/info/exclude
   - sed '/\/\.ddev/d' -i .git/info/exclude
+  - sed '/\/sites\/sites\.php/d' -i .git/info/exclude
+  - rm core/.env

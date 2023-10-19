@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Pass through command for Nightwatch, use ddev nightwatch instead
+## Usage: _nightwatch
+## Example: "Don't use this"
+
+cd core && yarn test:nightwatch "$@"
