@@ -22,12 +22,9 @@
         <ini name="error_reporting" value="32767"/>
         <!-- Do not limit the amount of memory tests take to run. -->
         <ini name="memory_limit" value="-1"/>
-        <!-- Example SIMPLETEST_BASE_URL value: http://localhost -->
         <env name="SIMPLETEST_BASE_URL" value="DRUPAL_CORE_DDEV_URL"/>
-        <!-- Example SIMPLETEST_DB value: mysql://username:password@localhost/databasename#table_prefix -->
         <env name="SIMPLETEST_DB" value="mysql://db:db@db/db"/>
-        <!-- Example BROWSERTEST_OUTPUT_DIRECTORY value: /path/to/webroot/sites/simpletest/browser_output -->
-        <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="/var/www/html/sites/simpletest/browser_output"/>
+        <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="/var/www/html/test_output"/>
         <!-- By default, browser tests will output links that use the base URL set
          in SIMPLETEST_BASE_URL. However, if your SIMPLETEST_BASE_URL is an internal
          path (such as may be the case in a virtual or Docker-based environment),
@@ -57,10 +54,8 @@
 
         <!-- Example for changing the driver class for mink tests MINK_DRIVER_CLASS value: 'Drupal\FunctionalJavascriptTests\DrupalSelenium2Driver' -->
         <env name="MINK_DRIVER_CLASS" value=''/>
-        <!-- Example for changing the driver args to mink tests MINK_DRIVER_ARGS value: '["http://127.0.0.1:8510"]' -->
-        <env name="MINK_DRIVER_ARGS" value='["chrome", {"browserName":"chrome", "goog:chromeOptions":{"args":["--no-sandbox","--ignore-certificate-errors", "--allow-insecure-localhost"]}}, "http://chrome:4444"]'/>
-        <!-- Example for changing the driver args to webdriver tests MINK_DRIVER_ARGS_WEBDRIVER value: '["chrome", { "chromeOptions": { "w3c": false } }, "http://localhost:4444/wd/hub"]' For using the Firefox browser, replace "chrome" with "firefox" -->
-        <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["chrome", {"browserName":"chrome", "goog:chromeOptions":{"args":["--no-sandbox","--ignore-certificate-errors", "--allow-insecure-localhost"]}}, "http://chrome:4444"]'/>
+        <env name="MINK_DRIVER_ARGS" value='["firefox", {"browserName":"firefox", "moz:firefoxOptions":{"args":[]}}, "http://firefox:4444"]'/>
+        <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["firefox", {"browserName":"firefox", "moz:firefoxOptions":{"args":[]}}, "http://firefox:4444"]'/>
     </php>
     <testsuites>
         <testsuite name="unit">

@@ -11,10 +11,9 @@ class CacheCommand extends BootCommand {
      * {@inheritdoc}
      */
     protected function configure() {
+      parent::configure();
       $this->setName('cache')
           ->setDescription('Clears all caches and the container registry');
-
-      parent::configure();
     }
 
     /**

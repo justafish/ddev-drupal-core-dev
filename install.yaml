@@ -4,16 +4,39 @@ name: ddev-drupal-core-dev
 
 project_files:
   - docker-compose.core-dev-selenium.yaml
-  - phpunit.xml
+  - core-dev/phpunit-firefox.xml
+  - core-dev/phpunit-chrome.xml
   - commands/web/drupal
+  - commands/web/phpunit
+  - core-dev/gitignore
   - core-dev/src/Command/AdminLoginCommand.php
   - core-dev/src/Command/BootCommand.php
   - core-dev/src/Command/CacheCommand.php
   - core-dev/src/Command/TestCommand.php
+  - core-dev/src/Command/TestBrowserCommand.php
 
 post_install_actions:
-  - mv phpunit.xml ../core/phpunit.xml
-  - sed -i "s|DRUPAL_CORE_DEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
+  - cp core-dev/phpunit-firefox.xml ../core/phpunit.xml
+  - sed -i "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
+  - mkdir -p ../test_output
+  - cp core-dev/gitignore ../test_output/.gitignore
+  - cp core-dev/gitignore ../vendor/.gitignore
+  - cp core-dev/gitignore ../sites/simpletest/.gitignore
+  - cp core-dev/gitignore ../sites/default/files/.gitignore
+  - |
+    if ! grep -q "\/sites\/default\/settings.php" ../.git/info/exclude; then
+      echo "/sites/default/settings.php" >> ../.git/info/exclude
+    fi
+  - |
+    if ! grep -q "\/\.ddev" ../.git/info/exclude; then
+      echo "/.ddev" >> ../.git/info/exclude
+    fi
 
 removal_actions:
   - rm core/phpunit.xml
+  - rm -rf test_output
+  - rm -f vendor/.gitignore
+  - rm -f sites/simpletest/.gitignore
+  - rm -f sites/default/files/.gitignore
+  - sed '/\/sites\/default\/settings\.php/d' -i .git/info/exclude
+  - sed '/\/\.ddev/d' -i .git/info/exclude
