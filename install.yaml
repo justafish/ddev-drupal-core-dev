@@ -51,7 +51,7 @@ removal_actions:
   - rm -f vendor/.gitignore
   - rm -f sites/simpletest/.gitignore
   - rm -f sites/default/files/.gitignore
-  - sed '/\/sites\/default\/settings\.php/d' -i .git/info/exclude
-  - sed '/\/\.ddev/d' -i .git/info/exclude
-  - sed '/\/sites\/sites\.php/d' -i .git/info/exclude
+  - sed -i"mac_os_is_annoying" '/\/sites\/default\/settings\.php/d' .git/info/exclude
+  - sed -i"mac_os_is_annoying" '/\/\.ddev/d' .git/info/exclude
+  - sed -i"mac_os_is_annoying" '/\/sites\/sites\.php/d' .git/info/exclude
   - rm core/.env
