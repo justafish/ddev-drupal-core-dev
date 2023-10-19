@@ -30,6 +30,7 @@ post_install_actions:
   - cp core-dev/gitignore ../vendor/.gitignore
   - cp core-dev/gitignore ../sites/simpletest/.gitignore
   - cp core-dev/gitignore ../sites/default/files/.gitignore
+  - mkdir -p .git/info
   - touch .git/info/exclude
   - |
     if ! grep -q "\/sites\/default\/settings.php" ../.git/info/exclude; then
