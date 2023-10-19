@@ -21,7 +21,7 @@ project_files:
 
 post_install_actions:
   - cp core-dev/phpunit-firefox.xml ../core/phpunit.xml
-  - sed -i "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
+  - sed -i"mac_os_is_annoying" "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
   - mkdir -p ../test_output
   - mkdir -p ../vendor
   - mkdir -p ../sites/simpletest
