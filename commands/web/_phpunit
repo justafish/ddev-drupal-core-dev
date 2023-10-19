@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #ddev-generated
-## Description: Run PHPUnit
-## Usage: phpunit
+## Description: Pass through command for PHPUnit, use ddev phpunit instead
+## Usage: _phpunit
 ## Example: "ddev phpunit core/modules/sdc/tests"
 
 ./vendor/bin/phpunit -c core --verbose "$@"
