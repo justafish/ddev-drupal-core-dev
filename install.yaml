@@ -9,6 +9,7 @@ project_files:
   - core-dev/src/Command/AdminLoginCommand.php
   - core-dev/src/Command/BootCommand.php
   - core-dev/src/Command/CacheCommand.php
+  - core-dev/src/Command/TestCommand.php
 
 post_install_actions:
   - mv phpunit.xml ../core/phpunit.xml

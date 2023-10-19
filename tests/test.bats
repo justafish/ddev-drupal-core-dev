@@ -6,6 +6,7 @@ setup() {
   export PROJNAME=ddev-drupal-core-dev
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
+  git clone git@git.drupal.org:project/drupal.git ${TESTDIR}
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
   ddev start -y >/dev/null
