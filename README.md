@@ -8,7 +8,7 @@ cd drupal
 ddev config --auto
 ddev composer install
 ddev get justafish/ddev-drupal-core-dev
-ddev start
+ddev restart
 # See included commands
 ddev drupal list
 
