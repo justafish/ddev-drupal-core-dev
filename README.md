@@ -9,7 +9,7 @@ ddev config --auto && \
 ddev start && \
 ddev get justafish/ddev-drupal-core-dev && \
 ddev restart && \
-ddev composer install && \
+ddev composer install
 
 # See included commands
 ddev drupal list && \
