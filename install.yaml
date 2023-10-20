@@ -17,6 +17,7 @@ project_files:
   - core-dev/src/Command/CacheCommand.php
   - core-dev/src/Command/TestCommand.php
   - core-dev/src/Command/TestBrowserCommand.php
+  - core-dev/src/Command/UninstallCommand.php
 
 post_install_actions:
   - cp core-dev/phpunit-chrome.xml ../core/phpunit.xml
