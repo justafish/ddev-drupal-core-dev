@@ -1,2 +1,9 @@
 #ddev-generated
-*
+.gitignore
+/.ddev
+/sites/default/settings.php
+/sites/sites.php
+/sites/simpletest
+/sites/default/files
+/vendor
+test_output

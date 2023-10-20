@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Run PHPUnit
+## Usage: phpunit
+## Example: "ddev phpunit core/modules/sdc/tests"
+
+echo "Clearing old webdriver sessions"
+curl -f -s http://chrome:4444/status | jq -r '.value.nodes[].slots[].session.sessionId' | while read -r session; do if [ "$session" != "null" ]; then curl -X DELETE "http://chrome:4444/session/$session"; fi; done
+./vendor/bin/phpunit -c core --verbose "$@"
