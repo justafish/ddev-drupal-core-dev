@@ -12,7 +12,7 @@ ddev restart && \
 ddev composer install
 
 # See included commands
-ddev drupal list && \
+ddev drupal list
 
 # Install drupal
 ddev drupal install && \
