@@ -18,7 +18,7 @@ ddev drupal list
 ddev drupal install && \
 
 # Run PHPUnit tests
-ddev phpunit core/modules/sdc && \
+ddev phpunit core/modules/sdc
 
 # Run Nightwatch tests (currently only runs on Chrome)
 ddev nightwatch --tag core
