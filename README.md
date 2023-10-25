@@ -25,6 +25,9 @@ ddev nightwatch --tag core
 ```
 
 ## Nightwatch Examples
+
+You can watch Nightwatch running in real time at https://drupal.ddev.site:7900 for Chrome and https://drupal.ddev.site:7901 for Firefox. The password is "secret".
+
 Only core tests
 ```
 ddev nightwatch --tag core
