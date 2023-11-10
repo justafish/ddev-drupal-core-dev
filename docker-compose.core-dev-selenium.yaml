@@ -30,9 +30,11 @@ services:
     expose:
       - 7901
     environment:
+      - NO_VNC_PORT=7901
+      - SE_NO_VNC_PORT=7901
       - VIRTUAL_HOST=$DDEV_HOSTNAME
-      - HTTPS_EXPOSE=7900:7901
-      - HTTP_EXPOSE=7910:7901
+      - HTTPS_EXPOSE=7901:7901
+      - HTTP_EXPOSE=7911:7901
     links:
       - web:web
     external_links:
