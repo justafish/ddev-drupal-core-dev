@@ -3,12 +3,12 @@
 This is a DDEV addon for doing Drupal core development.
 
 ```
-git clone git@git.drupal.org:project/drupal.git && \
-cd drupal && \
-ddev config --auto && \
-ddev start && \
-ddev get justafish/ddev-drupal-core-dev && \
-ddev restart && \
+git clone https://git.drupalcode.org/project/drupal.git core-dev
+cd core-dev
+ddev config --project-type=drupal10
+ddev start
+ddev get justafish/ddev-drupal-core-dev
+ddev restart
 ddev composer install
 
 # See included commands
