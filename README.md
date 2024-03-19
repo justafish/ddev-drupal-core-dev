@@ -3,7 +3,7 @@
 This is a DDEV addon for doing Drupal core development.
 
 ```
-git clone https://git.drupalcode.org/project/drupal.git core-dev
+git clone https://git.drupalcode.org/project/drupal.git drupal
 cd core-dev
 ddev config --project-type=drupal10
 ddev start
