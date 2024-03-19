@@ -40,7 +40,7 @@ Next install a demo site, which is not intended for production:
 ````
 ddev drupal install
 ````
-> :warning: There is no need to `composer require drush/drush` to get the ability to for example clear caches. A subset of that kind of functionality is available with `ddev drupal list`. Otherwise you won't be able to checkout any added feature branch due to unstaged changes for commit.
+> :warning: There is no need to `ddev composer require drush/drush` to get the ability to for example clear caches. A subset of that kind of functionality is available with `ddev drupal list`. Otherwise you won't be able to checkout any added feature branch due to unstaged changes for commit.
 
 In case you need to drop your database tables because you are for example working in the context of the Drupal installer you can simply manually delete the SQLite database file located in `sites/default/files/.sqlite`.
 
