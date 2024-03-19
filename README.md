@@ -4,7 +4,7 @@ This is a DDEV addon for doing Drupal core development.
 
 ```
 git clone https://git.drupalcode.org/project/drupal.git drupal
-cd core-dev
+cd drupal
 ddev config --project-type=drupal10
 ddev start
 ddev get justafish/ddev-drupal-core-dev
