@@ -27,7 +27,7 @@ ddev nightwatch --tag core
 ## Nightwatch Examples
 
 You can watch Nightwatch running in real time at https://drupal.ddev.site:7900
-for Chrome and https://core-dev.ddev.site:7901 for Firefox. The password is
+for Chrome and https://drupal.ddev.site:7901 for Firefox. The password is
 "secret". YMMV using Firefox as core tests don't currently run on it.
 
 Only core tests
