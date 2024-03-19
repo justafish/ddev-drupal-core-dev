@@ -1,37 +1,62 @@
-# ddev-core-dev
+# ddev-drupal-core-dev
 
-This is a DDEV addon for doing Drupal core development.
+* [What is ddev-drupal-core-dev](#what-is-ddev-drupal-core-dev)
+* [Initial Setup](#initial-setup)
+* [Install Drupal](#install-drupal)
+* [PHP Unit](#install-drupal)
+* [Nighwatch](#install-drupal)
+
+## What is `ddev-drupal-core-dev`
+This is a DDEV-addon for doing Drupal Core development.
+
+
+## Initial Setup
 
 We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack) (but please try and keep work and feature requests in Issues where it's visible to all 🙏)
 
 ```
 git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
-ddev config --project-type=drupal10
+ddev config --project-type=drupal10 --omit-containers=db
 ddev start
 ddev corepack enable
 ddev get justafish/ddev-drupal-core-dev
 ddev restart
 ddev composer install
+````
+Because `ddev-drupal-core-dev` is using SQLite the database container could be omitted on `ddev config --project-type=drupal10 --omit-containers=db`.
 
-# See included commands
+
+## Install Drupal
+
+To get an overview of the list of available tasks:
+
+```
 ddev drupal list
+````
 
-# Install drupal
+Next install a demo site, which is not intended for production:
+
+````
 ddev drupal install
+````
+> :warning: There is no need to `composer require drush/drush` to get the ability to for example clear caches. A subset of that kind of functionality is available with `ddev drupal list`. Otherwise you won't be able to checkout any added feature branch due to unstaged changes for commit.
 
-# Run PHPUnit tests
+In case you need to drop your database tables because you are for example working in the context of the Drupal installer you can simply manually delete the SQLite database file located in `sites/default/files/.sqlite`.
+
+
+## PHPUnit
+
+```
 ddev phpunit core/modules/sdc
-
-# Run Nightwatch tests (currently only runs on Chrome)
-ddev nightwatch --tag core
 ```
 
-## Nightwatch Examples
+
+## Nightwatch
 
 You can watch Nightwatch running in real time at https://drupal.ddev.site:7900
 for Chrome and https://drupal.ddev.site:7901 for Firefox. The password is
-"secret". YMMV using Firefox as core tests don't currently run on it.
+"secret". YMMV using Firefox as core tests don't currently run on it.(currently only runs on Chrome)
 
 Only core tests
 ```
