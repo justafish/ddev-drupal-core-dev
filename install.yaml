@@ -26,7 +26,7 @@ post_install_actions:
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
-  - cd ../ && ddev exec yarn --cwd="core"
+  - cd ../core && ddev yarn
 
 removal_actions:
   - rm core/phpunit.xml
