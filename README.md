@@ -6,7 +6,7 @@ This is a DDEV addon for doing Drupal core development.
 git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
 ddev config --project-type=drupal10
-ddev start
+ddev start && ddev corepack enable
 ddev get justafish/ddev-drupal-core-dev
 ddev restart
 ddev composer install
