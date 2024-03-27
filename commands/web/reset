@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Required because if sites/default/files is created (by volume mounting perhaps)
+# then `ddev drupal install` fails.`
+
+## Description: Reset Drupal ready to install.
+## Usage: reset
+## Example: "ddev reset"
+
+chmod 775 sites/default sites/default/settings.php
+rm -rf sites/default/files
+rm -f sites/default/settings.php

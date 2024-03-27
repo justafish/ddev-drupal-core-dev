@@ -7,7 +7,7 @@ git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
 ddev config --project-type=drupal10
 ddev start
-ddev corepack enable
+ddev exec corepack enable
 ddev get justafish/ddev-drupal-core-dev
 ddev restart
 ddev composer install
@@ -16,13 +16,10 @@ ddev composer install
 ddev drupal list
 
 # Install drupal
-ddev drupal install
+ddev reset && ddev drupal install
 
-# Run PHPUnit tests
-ddev phpunit core/modules/sdc
-
-# Run Nightwatch tests (currently only runs on Chrome)
-ddev nightwatch --tag core
+# Verify some sample tests that require a working site
+ddev phpunit core/tests/Drupal/FunctionalTests/Core
 ```
 
 ## Nightwatch Examples
