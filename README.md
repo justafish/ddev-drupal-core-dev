@@ -1,13 +1,13 @@
 # ddev-drupal-core-dev
 
-* [What is ddev-drupal-core-dev](#what-is-ddev-drupal-core-dev)
+* [What is ddev-drupal-core-dev?](#what-is-ddev-drupal-core-dev)
 * [Initial Setup](#initial-setup)
 * [Install Drupal](#install-drupal)
-* [PHP Unit](#install-drupal)
-* [Nighwatch](#install-drupal)
+* [PHP Unit](#php-unit)
+* [Nighwatch](#nightwatch)
 
-## What is `ddev-drupal-core-dev`
-This is a DDEV-addon for doing Drupal Core development.
+## What is ddev-drupal-core-dev?
+This is a [DDEV](https://github.com/ddev/ddev) add-on for doing Drupal Core development.
 
 
 ## Initial Setup
