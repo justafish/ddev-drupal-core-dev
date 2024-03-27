@@ -27,7 +27,7 @@ post_install_actions:
   - mkdir -p ../test_output
   - chmod +w ../test_output
   - ddev exec corepack enable
-  - cd ../core && ddev yarn
+  - cd ../core && ddev exec yarn set version stable
 
 removal_actions:
   - rm core/phpunit.xml
