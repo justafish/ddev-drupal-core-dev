@@ -20,6 +20,9 @@ ddev reset && ddev drupal install
 
 # Verify some sample tests that require a working site
 ddev phpunit core/tests/Drupal/FunctionalTests/Core
+
+# Verify you can run Nightwatch tests
+ddev nightwatch --tag ajax
 ```
 
 ## Nightwatch Examples
