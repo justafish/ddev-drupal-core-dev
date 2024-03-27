@@ -18,10 +18,10 @@ ddev drupal list
 # Install drupal
 ddev reset && ddev drupal install
 
-# Verify some sample tests that require a working site
+# Verify some sample PHPUnit tests that require a working site
 ddev phpunit core/tests/Drupal/FunctionalTests/Core
 
-# Verify you can run Nightwatch tests
+# Verify some sample Nightwatch tests
 ddev nightwatch --tag ajax
 ```
 
