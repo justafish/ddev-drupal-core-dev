@@ -2,6 +2,8 @@
 
 This is a DDEV addon for doing Drupal core development.
 
+We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack) (but please try and keep work and feature requests in Issues where it's visible to all 🙏)
+
 ```
 git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
