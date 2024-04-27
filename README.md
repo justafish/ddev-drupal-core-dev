@@ -3,7 +3,7 @@
 * [What is ddev-drupal-core-dev?](#what-is-ddev-drupal-core-dev)
 * [Initial Setup](#initial-setup)
 * [Install Drupal](#install-drupal)
-* [PHP Unit](#php-unit)
+* [PHPUnit](#phpunit)
 * [Nighwatch](#nightwatch)
 
 ## What is ddev-drupal-core-dev?
