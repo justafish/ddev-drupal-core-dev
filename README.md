@@ -42,7 +42,7 @@ ddev drupal install
 ````
 > :warning: To avoid unstaged conflicts in git, **do not** `ddev composer require drush/drush`.  A subset of that kind of functionality is available with `ddev drupal list`.
 
-In case you need to drop your database tables because you are for example working in the context of the Drupal installer you can simply manually delete the SQLite database file located in `sites/default/files/.sqlite`.
+To drop your database tables, for example if you're working in the context of the Drupal installer, manually delete the SQLite database file located in `sites/default/files/.sqlite`.
 
 
 ## PHPUnit
