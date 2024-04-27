@@ -56,7 +56,7 @@ ddev phpunit core/modules/sdc
 
 You can watch Nightwatch running in real time at https://drupal.ddev.site:7900
 for Chrome and https://drupal.ddev.site:7901 for Firefox. The password is
-"secret". YMMV using Firefox as core tests don't currently run on it.(currently only runs on Chrome)
+"secret". (Core tests using Firefox are not yet mature.)
 
 Only core tests
 ```
