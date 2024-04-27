@@ -48,7 +48,7 @@ To drop your database tables, for example if you're working in the context of th
 ## PHPUnit
 
 ```
-ddev phpunit core/modules/sdc
+ddev phpunit core/modules/workspaces
 ```
 
 
