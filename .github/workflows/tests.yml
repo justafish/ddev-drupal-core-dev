@@ -29,9 +29,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup SSH
-        run: ssh-keyscan -t rsa git.drupal.org >> ~/.ssh/known_hosts
-
       - uses: ddev/github-action-add-on-test@v2
         with:
           ddev_version: ${{ matrix.ddev_version }}
