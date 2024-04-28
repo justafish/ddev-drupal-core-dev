@@ -3,8 +3,12 @@
 #ddev-generated
 ## Description: Run PHPUnit
 ## Usage: phpunit
-## Example: "ddev phpunit core/modules/sdc/tests"
+## Example: "ddev phpunit core/modules/field"
 
+if ! command -v phpunit >/dev/null; then
+  echo "phpunit is not in PATH in the web container. You probably forgot to 'ddev composer install'"
+  exit 2
+fi
 echo "Clearing old webdriver sessions"
 curl -f -s http://chrome:4444/status | jq -r '.value.nodes[].slots[].session.sessionId' | while read -r session; do if [ "$session" != "null" ]; then curl -X DELETE "http://chrome:4444/session/$session"; fi; done
-./vendor/bin/phpunit -c core --verbose "$@"
+phpunit -c core --verbose "$@"

@@ -5,7 +5,7 @@
 #ddev-generated
 ## Description: Run commands from the core drupal script
 ## Usage: drupal
-## Example: "ddev drupal --help"
+## Example: ddev drupal --help\nddev drupal list\nddev drupal install demo_umami
 ## ExecRaw: true
 
 /**
