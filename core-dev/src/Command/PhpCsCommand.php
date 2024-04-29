@@ -21,7 +21,7 @@ class PhpCsCommand extends Command {
      * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output): int {
-        $command = "composer phpcs -- --report-full";
+        $command = "composer phpcs -- --report-full --report-summary";
         $phpcs = Process::fromShellCommandline($command);
         $output->writeln($command);
         $phpcs->setTimeout(0);
