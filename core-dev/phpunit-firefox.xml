@@ -23,7 +23,7 @@
         <!-- Do not limit the amount of memory tests take to run. -->
         <ini name="memory_limit" value="-1"/>
         <env name="SIMPLETEST_BASE_URL" value="DRUPAL_CORE_DDEV_URL"/>
-        <env name="SIMPLETEST_DB" value="mysql://db:db@db/db"/>
+        <env name="SIMPLETEST_DB" value="sqlite://localhost/sites/default/files/db.sqlite"/>
         <env name="BROWSERTEST_OUTPUT_DIRECTORY" value="/var/www/html/test_output"/>
         <!-- By default, browser tests will output links that use the base URL set
          in SIMPLETEST_BASE_URL. However, if your SIMPLETEST_BASE_URL is an internal
