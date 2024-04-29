@@ -21,6 +21,7 @@ use DrupalCoreDev\Command\AdminLoginCommand;
 use DrupalCoreDev\Command\TestCommand;
 use DrupalCoreDev\Command\TestBrowserCommand;
 use DrupalCoreDev\Command\UninstallCommand;
+use DrupalCoreDev\Command\PhpCsCommand;
 
 if (PHP_SAPI !== 'cli') {
     return;
@@ -39,5 +40,6 @@ $application->add(new AdminLoginCommand($loader));
 $application->add(new TestCommand());
 $application->add(new TestBrowserCommand());
 $application->add(new UninstallCommand());
+$application->add(new PhpCsCommand());
 
 $application->run();
