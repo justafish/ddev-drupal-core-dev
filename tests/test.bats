@@ -11,6 +11,8 @@ setup() {
   tar --strip-components 1 -zxf /tmp/drupal.tar.gz -C ${TESTDIR}
   cd "${TESTDIR}"
   mv vendor /tmp/vendor.bak
+  git config --global user.email "example@example.com"
+  git config --global user.name "Example Example"
   git init && git add . >/dev/null && git commit -m "current" >/dev/null
   mv /tmp/vendor.bak vendor
   ddev config --project-name=${PROJNAME} --upload-dirs=.ddev/tmp
