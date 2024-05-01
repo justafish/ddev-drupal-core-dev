@@ -1,37 +1,62 @@
-# ddev-core-dev
+# ddev-drupal-core-dev
 
-This is a DDEV addon for doing Drupal core development.
+* [What is ddev-drupal-core-dev?](#what-is-ddev-drupal-core-dev)
+* [Initial Setup](#initial-setup)
+* [Install Drupal](#install-drupal)
+* [PHPUnit](#phpunit)
+* [Nighwatch](#nightwatch)
+
+## What is ddev-drupal-core-dev?
+This is a [DDEV](https://github.com/ddev/ddev) add-on for doing Drupal Core development.
+
+
+## Initial Setup
 
 We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack) (but please try and keep work and feature requests in Issues where it's visible to all 🙏)
 
 ```
 git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
-ddev config --project-type=drupal10
+# Because `ddev-drupal-core-dev` is using SQLite the database
+# container is omitted by the `--omit-containers=db` flag
+ddev config --omit-containers=db --disable-settings-management
 ddev start
 ddev corepack enable
 ddev get justafish/ddev-drupal-core-dev
 ddev restart
 ddev composer install
+````
 
-# See included commands
+## Install Drupal
+
+To get an overview of the list of available tasks:
+
+```
 ddev drupal list
+````
 
-# Install drupal
+Next install a demo site, which is not intended for production:
+
+````
 ddev drupal install
+````
+> :warning: To avoid unstaged conflicts in git, **do not** `ddev composer require drush/drush`.  A subset of that kind of functionality is available with `ddev drupal list`.
 
-# Run PHPUnit tests
-ddev phpunit core/modules/sdc
+To drop your database tables, for example if you're working in the context of the Drupal installer, simply run `ddev drupal uninstall`. That deletes the `settings.php` file and the `/sites/default/files` folder including the SQLite database file.
 
-# Run Nightwatch tests (currently only runs on Chrome)
-ddev nightwatch --tag core
+
+## PHPUnit
+
+```
+ddev phpunit core/modules/workspaces
 ```
 
-## Nightwatch Examples
+
+## Nightwatch
 
 You can watch Nightwatch running in real time at https://drupal.ddev.site:7900
 for Chrome and https://drupal.ddev.site:7901 for Firefox. The password is
-"secret". YMMV using Firefox as core tests don't currently run on it.
+"secret". (Core tests using Firefox are not yet mature.)
 
 Only core tests
 ```
