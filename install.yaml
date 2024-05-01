@@ -8,8 +8,10 @@ project_files:
   - core-dev/phpunit-firefox.xml
   - core-dev/phpunit-chrome.xml
   - commands/web/drupal
+  - commands/web/drush
   - commands/web/phpunit
   - commands/web/nightwatch
+  - core-dev/install_drush.sh
   - core-dev/gitignore
   - core-dev/.env
   - core-dev/src/Command/AdminLoginCommand.php
