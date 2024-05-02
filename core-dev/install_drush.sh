@@ -23,7 +23,7 @@ git add .makedrush.txt
 git stash
 
 # Install drush
-composer require drush/drush
+composer require drush/drush --with-dependencies
 
 # Roll back to what we started with. Cleans up
 # composer.* and anything else that the drush install changes
@@ -33,7 +33,7 @@ git reset --hard
 
 # Restore anything that might have been staged
 # prior to the start
-git stash apply
+git stash pop
 
 # Get rid of our dummy file
 git rm -f .makedrush.txt
