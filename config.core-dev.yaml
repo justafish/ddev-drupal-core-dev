@@ -1,0 +1,31 @@
+# #ddev-generated
+# This file is placed by the justafish/ddev-drupal-core-dev addon.
+
+webimage_extra_packages: ["chromium-driver"]
+ddev_version_constraint: '>=v1.23.0'
+hooks:
+  post-start:
+  - exec: |
+      dburl='sqlite://localhost/sites/default/files/db.sqlite'
+      cp .ddev/core-dev/phpunit-chrome.xml core/phpunit.xml
+      cp .ddev/core-dev/.env core/.env
+      if ping -c 1 db >/dev/null 2>&1; then
+        case ${DDEV_DATABASE_FAMILY:-} in
+          mysql)
+            # the backslash here is to prevent perl from eating the @
+            dburl='mysql://db:db\@db/db'
+            ;;
+          postgres)
+            dburl='pgsql://db:db\@db/db'
+            ;;
+        esac
+      fi
+      perl -pi -e "s|SIMPLETEST_DB_VALUE|${dburl}|g" core/phpunit.xml
+      perl -pi -e "s|DRUPAL_TEST_DB_URL_VALUE|${dburl}|g" core/.env
+      perl -pi -e "s|DRUPAL_CORE_DDEV_URL|${DDEV_PRIMARY_URL}|g" core/phpunit.xml
+
+upload_dirs:
+  # The install technique tries to remove all of sites/default/files
+  # but with DDEV + mutagen that isn't possible.
+  # so just redirect the upload_dirs.
+  - .ddev/tmp
