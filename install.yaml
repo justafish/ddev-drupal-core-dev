@@ -4,6 +4,7 @@ name: ddev-drupal-core-dev
 
 project_files:
   - web-build/Dockerfile
+  - config.ddev-drupal-core-dev.yaml
   - docker-compose.core-dev-selenium.yaml
   - core-dev/phpunit-firefox.xml
   - core-dev/phpunit-chrome.xml
