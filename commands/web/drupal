@@ -15,13 +15,18 @@
 
 use Drupal\Core\Command\GenerateTheme;
 use Drupal\Core\Command\InstallCommand;
-use Symfony\Component\Console\Application;
-use DrupalCoreDev\Command\CacheCommand;
 use DrupalCoreDev\Command\AdminLoginCommand;
-use DrupalCoreDev\Command\TestCommand;
+use DrupalCoreDev\Command\CacheCommand;
+use DrupalCoreDev\Command\LintCommand;
+use DrupalCoreDev\Command\LintCspellCommand;
+use DrupalCoreDev\Command\LintCssCommand;
+use DrupalCoreDev\Command\LintJsCommand;
+use DrupalCoreDev\Command\LintPhpCsCommand;
+use DrupalCoreDev\Command\LintPhpStanCommand;
 use DrupalCoreDev\Command\TestBrowserCommand;
+use DrupalCoreDev\Command\TestCommand;
 use DrupalCoreDev\Command\UninstallCommand;
-use DrupalCoreDev\Command\PhpCsCommand;
+use Symfony\Component\Console\Application;
 
 if (PHP_SAPI !== 'cli') {
     return;
@@ -40,6 +45,11 @@ $application->add(new AdminLoginCommand($loader));
 $application->add(new TestCommand());
 $application->add(new TestBrowserCommand());
 $application->add(new UninstallCommand());
-$application->add(new PhpCsCommand());
+$application->add(new LintPhpCsCommand());
+$application->add(new LintPhpStanCommand());
+$application->add(new LintCssCommand());
+$application->add(new LintJsCommand());
+$application->add(new LintCspellCommand());
+$application->add(new LintCommand());
 
 $application->run();
