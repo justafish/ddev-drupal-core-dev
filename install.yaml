@@ -18,6 +18,12 @@ project_files:
   - core-dev/src/Command/TestCommand.php
   - core-dev/src/Command/TestBrowserCommand.php
   - core-dev/src/Command/UninstallCommand.php
+  - core-dev/src/Command/LintPhpCsCommand.php
+  - core-dev/src/Command/LintPhpStanCommand.php
+  - core-dev/src/Command/LintCssCommand.php
+  - core-dev/src/Command/LintJsCommand.php
+  - core-dev/src/Command/LintCspellCommand.php
+  - core-dev/src/Command/LintCommand.php
 
 post_install_actions:
   - cp core-dev/phpunit-chrome.xml ../core/phpunit.xml
