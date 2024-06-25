@@ -27,7 +27,8 @@ if (PHP_SAPI !== 'cli') {
 }
 
 $composer_root = getenv('DDEV_COMPOSER_ROOT');
-$loader = require_once $composer_root . '/autoload.php';
+$doc_root = getenv('DDEV_DOCROOT');
+$loader = require_once $composer_root . '/' . $doc_root . '/autoload.php';
 $loader->addPsr4('DrupalCoreDev\\', $composer_root . '/.ddev/core-dev/src/');
 
 $application = new Application('drupal', \Drupal::VERSION);
