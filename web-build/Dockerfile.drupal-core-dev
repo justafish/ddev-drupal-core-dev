@@ -1,0 +1,5 @@
+# This is required because of upstream changes related to
+# `webimage_extra_packages: ["chromium-driver"]``
+# These problems will be solved in DDEV v1.23.3.
+# See https://github.com/ddev/ddev/pull/6363
+RUN chmod 777 /run/php /var/log
