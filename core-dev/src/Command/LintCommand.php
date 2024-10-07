@@ -16,7 +16,7 @@ class LintCommand extends Command {
     protected function configure(): void {
         $this->setName('lint')
             ->setDescription('Run lint tests.')
-            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Tail the completion debug log');
+            ->addOption('stop-on-failure', null, InputOption::VALUE_NONE, 'Stop all test execution once a failure is found.');
     }
 
     /**
