@@ -7,9 +7,8 @@ We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/c
 ```
 git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
-ddev config --project-type=drupal10
+ddev config --omit-containers=db --disable-settings-management
 ddev start
-ddev corepack enable
 ddev get justafish/ddev-drupal-core-dev
 ddev restart
 ddev composer install

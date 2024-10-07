@@ -11,4 +11,4 @@ if ! command -v phpunit >/dev/null; then
 fi
 echo "Clearing old webdriver sessions"
 curl -f -s http://chrome:4444/status | jq -r '.value.nodes[].slots[].session.sessionId' | while read -r session; do if [ "$session" != "null" ]; then curl -X DELETE "http://chrome:4444/session/$session"; fi; done
-phpunit -c core --verbose "$@"
+phpunit -c core "$@"

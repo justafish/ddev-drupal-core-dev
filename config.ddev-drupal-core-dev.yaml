@@ -1,0 +1,11 @@
+# #ddev-generated
+# This file is placed by the justafish/ddev-drupal-core-dev addon.
+
+webimage_extra_packages: ["chromium-driver"]
+ddev_version_constraint: '>=v1.23.1'
+omit_containers: ["db"]
+upload_dirs:
+# The install technique tries to remove all of sites/default/files
+# but with DDEV + mutagen that isn't possible.
+# so just redirect the upload_dirs.
+    - .ddev/tmp

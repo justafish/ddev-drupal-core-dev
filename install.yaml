@@ -3,7 +3,7 @@
 name: ddev-drupal-core-dev
 
 project_files:
-  - web-build/Dockerfile
+  - config.ddev-drupal-core-dev.yaml
   - docker-compose.core-dev-selenium.yaml
   - core-dev/phpunit-firefox.xml
   - core-dev/phpunit-chrome.xml
@@ -32,7 +32,6 @@ post_install_actions:
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
-  - ddev exec corepack enable
   - cd ../core && ddev yarn
 
 removal_actions:
