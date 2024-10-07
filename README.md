@@ -71,3 +71,20 @@ a11y test for a custom admin theme
 ```
 ddev nightwatch --tag a11y:admin --adminTheme seven
 ```
+
+## Core Linting
+
+This will run static tests against core standards.
+
+```
+ddev drupal lint:phpstan
+ddev drupal lint:phpcs
+ddev drupal lint:js
+ddev drupal lint:css
+ddev drupal lint:cspell
+# CSpell against only modified files
+ddev drupal lint:cspell --modified-only
+```
+
+You can run all linting with `ddev drupal lint`, or with fail-fast turned on:
+`ddev drupal lint --stop-on-failure`
