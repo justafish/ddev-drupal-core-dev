@@ -7,3 +7,4 @@
 /sites/default/files
 /vendor
 test_output
+*.orig

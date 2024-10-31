@@ -3,13 +3,15 @@
 name: ddev-drupal-core-dev
 
 project_files:
-  - config.ddev-drupal-core-dev.yaml
+  - config.core-dev.yaml
   - docker-compose.core-dev-selenium.yaml
   - core-dev/phpunit-firefox.xml
   - core-dev/phpunit-chrome.xml
   - commands/web/drupal
+  - commands/web/drush
   - commands/web/phpunit
   - commands/web/nightwatch
+  - core-dev/install_drush.sh
   - core-dev/gitignore
   - core-dev/.env
   - core-dev/src/Command/AdminLoginCommand.php
@@ -26,13 +28,9 @@ project_files:
   - core-dev/src/Command/LintCommand.php
 
 post_install_actions:
-  - cp core-dev/phpunit-chrome.xml ../core/phpunit.xml
-  - perl -pi -e "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
-  - cp core-dev/.env ../core/.env
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
-  - cd ../core && ddev yarn
 
 removal_actions:
   - |

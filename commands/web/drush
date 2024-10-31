@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Run drush CLI inside the web container, installing it if necessary
+## Usage: drush [flags] [args]
+## Example: "ddev drush uli" or "ddev drush sql-cli" or "ddev drush --version"
+## ProjectTypes: drupal7,drupal8,drupal9,drupal10,drupal,backdrop
+## ExecRaw: true
+
+if ! command -v drush >/dev/null; then
+  echo "drush is not yet installed. Installing it...'"
+  .ddev/core-dev/install_drush.sh
+fi
+drush "$@"
