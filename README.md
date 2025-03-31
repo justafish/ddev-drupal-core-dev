@@ -10,7 +10,6 @@ cd drupal
 ddev config --omit-containers=db --disable-settings-management
 ddev start
 ddev add-on get justafish/ddev-drupal-core-dev 
-# or `ddev get justafish/ddev-drupal-core-dev` if your DDEV version is older than 1.23.5
 ddev restart
 ddev composer install
 
