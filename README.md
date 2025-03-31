@@ -9,7 +9,7 @@ git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
 ddev config --omit-containers=db --disable-settings-management
 ddev start
-ddev get justafish/ddev-drupal-core-dev
+ddev add-on get justafish/ddev-drupal-core-dev 
 ddev restart
 ddev composer install
 
