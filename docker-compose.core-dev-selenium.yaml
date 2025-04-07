@@ -2,7 +2,7 @@
 services:
   chrome:
     container_name: ddev-${DDEV_SITENAME}-chrome
-    image: seleniarm/standalone-chromium:4.1.2-20220227
+    image: selenium/standalone-chromium:134.0.6998.117
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT
@@ -22,7 +22,7 @@ services:
       - ddev-global-cache:/mnt/ddev-global-cache
   firefox:
     container_name: ddev-${DDEV_SITENAME}-firefox
-    image: seleniarm/standalone-chromium:4.1.2-20220227
+    image: selenium/standalone-firefox:136.0.2
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT

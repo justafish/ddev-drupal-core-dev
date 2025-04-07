@@ -24,8 +24,11 @@ project_files:
   - core-dev/src/Command/LintJsCommand.php
   - core-dev/src/Command/LintCspellCommand.php
   - core-dev/src/Command/LintCommand.php
+  - core-dev/src/Command/ModuleInstallCommand.php
 
 post_install_actions:
+  - ddev exec sudo apt update
+  - ddev exec sudo apt install chromium-common=134.0.6998.35-1~deb12u1 chromium-driver=134.0.6998.35-1~deb12u1 -y --allow-downgrades
   - cp core-dev/phpunit-chrome.xml ../core/phpunit.xml
   - perl -pi -e "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
   - cp core-dev/.env ../core/.env
@@ -42,3 +45,6 @@ removal_actions:
       fi
     done
   - rm -rf ../test_output
+  - ddev exec sudo apt update
+  # Revert back to default versions.
+  - ddev exec sudo apt install chromium-common chromium-driver -y

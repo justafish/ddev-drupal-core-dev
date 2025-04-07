@@ -1,7 +1,6 @@
 # #ddev-generated
 # This file is placed by the justafish/ddev-drupal-core-dev addon.
 
-webimage_extra_packages: ["chromium-driver"]
 ddev_version_constraint: '>=v1.23.1'
 omit_containers: ["db"]
 upload_dirs:
