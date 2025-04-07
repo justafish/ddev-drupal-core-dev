@@ -4,6 +4,7 @@ This is a DDEV addon for doing Drupal core development.
 
 We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack) (but please try and keep work and feature requests in Issues where it's visible to all 🙏)
 
+## Installation
 ```
 git clone https://git.drupalcode.org/project/drupal.git drupal
 cd drupal
@@ -13,7 +14,10 @@ ddev add-on get justafish/ddev-drupal-core-dev
 
 # See included commands
 ddev drupal list
+```
 
+## Examples
+```
 # Install drupal
 # Run "ddev drupal install" to see all available options
 ddev drupal install standard
