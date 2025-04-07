@@ -29,8 +29,7 @@ class ModuleInstallCommand extends BootCommand {
           $module_installer = \Drupal::service('module_installer');
           assert($module_installer instanceof ModuleInstallerInterface);
           $module_installer->install($modules);
-          $kernel = \Drupal::service('kernel');
-          $kernel->rebuildContainer();
+          drupal_flush_all_caches();
       }
       return 0;
     }
