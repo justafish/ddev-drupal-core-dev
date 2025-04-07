@@ -17,6 +17,7 @@ project_files:
   - core-dev/src/Command/CacheCommand.php
   - core-dev/src/Command/TestCommand.php
   - core-dev/src/Command/TestBrowserCommand.php
+  - core-dev/src/Command/TestExtensionsCommand.php
   - core-dev/src/Command/UninstallCommand.php
   - core-dev/src/Command/LintPhpCsCommand.php
   - core-dev/src/Command/LintPhpStanCommand.php
