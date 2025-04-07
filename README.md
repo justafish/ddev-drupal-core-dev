@@ -17,7 +17,8 @@ ddev composer install
 ddev drupal list
 
 # Install drupal
-ddev drupal install
+# Run "ddev drupal install" to see all available options
+ddev drupal install standard
 
 # Run PHPUnit tests
 ddev phpunit core/modules/sdc
