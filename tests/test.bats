@@ -17,7 +17,7 @@ setup() {
 health_checks() {
   ddev exec "curl -s chrome:7900" | grep "noVNC"
   ddev exec "curl -s firefox:7901" | grep "noVNC"
-  ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev phpunit core/modules/system/tests/src/FunctionalJavascript/FrameworkTest.php
 }
 
 teardown() {
