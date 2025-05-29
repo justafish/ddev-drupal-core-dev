@@ -26,7 +26,12 @@ project_files:
   - core-dev/src/Command/ModuleInstallCommand.php
 
 post_install_actions:
-  - cp core-dev/.env ../core/.env
+  - |
+    if [ -d "../web/core" ]; then
+      cp core-dev/.env ../web/core/.env
+    else
+      cp core-dev/.env ../core/.env
+    fi
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
