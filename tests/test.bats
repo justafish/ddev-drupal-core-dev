@@ -16,9 +16,9 @@ setup() {
   export DDEV_NONINTERACTIVE=true
   export DDEV_NO_INSTRUMENTATION=true
   ddev delete -Oy "${PROJNAME}" >/dev/null 2>&1 || true
-  curl -L -o /tmp/drupal.tar.gz https://ftp.drupal.org/files/projects/drupal-11.x-dev.tar.gz
-  tar --strip-components 1 -zxf /tmp/drupal.tar.gz -C ${TESTDIR}
+  composer create-project drupal/recommended-project ${TESTDIR}
   cd "${TESTDIR}"
+  composer install
   run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site
   assert_success
   run ddev start -y
@@ -39,9 +39,6 @@ teardown() {
 @test "install from directory" {
   set -eu -o pipefail
   echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
-  pwd
-  ls -lha
-  echo "$TESTDIR"
   run ddev add-on get "${DIR}"
   assert_success
   run ddev restart -y
