@@ -36,7 +36,6 @@ post_install_actions:
   - mkdir -p ../test_output
   - chmod +w ../test_output
   - |
-    cd ../core && ddev yarn
     if [ -d "../web/core" ]; then
       ddev exec -d web/core yarn
     else
