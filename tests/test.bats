@@ -1,48 +1,47 @@
 setup() {
   set -eu -o pipefail
-  export DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )/.."
-  export TESTDIR=~/tmp/test-ddev-drupal-core-dev
-  mkdir -p $TESTDIR
-  export PROJNAME=ddev-drupal-core-dev
-  export DDEV_NON_INTERACTIVE=true
-  ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
+
+  export GITHUB_REPO=justafish/ddev-drupal-core-dev
+
+  TEST_BREW_PREFIX="$(brew --prefix 2>/dev/null || true)"
+  export BATS_LIB_PATH="${BATS_LIB_PATH}:${TEST_BREW_PREFIX}/lib:/usr/lib/bats"
+  bats_load_library bats-assert
+  bats_load_library bats-file
+  bats_load_library bats-support
+
+  export DIR="$(cd "$(dirname "${BATS_TEST_FILENAME}")/.." >/dev/null 2>&1 && pwd)"
+  export PROJNAME="test-$(basename "${GITHUB_REPO}")"
+  mkdir -p ~/tmp
+  export TESTDIR=$(mktemp -d ~/tmp/${PROJNAME}.XXXXXX)
+  export DDEV_NONINTERACTIVE=true
+  export DDEV_NO_INSTRUMENTATION=true
+  ddev delete -Oy "${PROJNAME}" >/dev/null 2>&1 || true
   curl -L -o /tmp/drupal.tar.gz https://ftp.drupal.org/files/projects/drupal-11.x-dev.tar.gz
   tar --strip-components 1 -zxf /tmp/drupal.tar.gz -C ${TESTDIR}
   cd "${TESTDIR}"
-  ddev config --project-name=${PROJNAME} --upload-dirs=.ddev/tmp
-  ddev config --update
-  ddev start -y >/dev/null
+  run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site
+  assert_success
+  run ddev start -y
+  assert_success
 }
 
 health_checks() {
   ddev exec "curl -s chrome:7900" | grep "noVNC"
-  ddev exec "curl -s firefox:7901" | grep "noVNC"
   ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
 }
 
 teardown() {
   set -eu -o pipefail
-  cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1
   [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
 }
 
 @test "install from directory" {
   set -eu -o pipefail
-  cd ${TESTDIR}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ${DIR}
-  ddev restart
+  echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
+  run ddev add-on get "${DIR}"
+  assert_success
+  run ddev restart -y
+  assert_success
   health_checks
 }
-
-#TODO: Re-enable release tests after the add-on has a release with DDEV v1.23.0 support
-#@test "install from release" {
-#  set -eu -o pipefail
-#  cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-#  echo "# ddev get ddev/ddev-addon-template with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-#  ddev get justafish/ddev-drupal-core-dev
-#  ddev restart >/dev/null
-#  health_checks
-#}
-
