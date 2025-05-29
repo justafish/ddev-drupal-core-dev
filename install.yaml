@@ -5,8 +5,6 @@ name: ddev-drupal-core-dev
 project_files:
   - config.ddev-drupal-core-dev.yaml
   - docker-compose.core-dev-selenium.yaml
-  - core-dev/phpunit-firefox.xml
-  - core-dev/phpunit-chrome.xml
   - commands/web/drupal
   - commands/web/phpunit
   - commands/web/nightwatch
@@ -28,25 +26,16 @@ project_files:
   - core-dev/src/Command/ModuleInstallCommand.php
 
 post_install_actions:
-  - ddev exec sudo apt update
-  - ddev exec sudo apt install chromium-common=134.0.6998.35-1~deb12u1 chromium-driver=134.0.6998.35-1~deb12u1 -y --allow-downgrades
-  - cp core-dev/phpunit-chrome.xml ../core/phpunit.xml
-  - perl -pi -e "s|DRUPAL_CORE_DDEV_URL|$DDEV_PRIMARY_URL|g" ../core/phpunit.xml
-  - cp core-dev/.env ../core/.env
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
-  - cd ../core && ddev yarn
-  - ddev restart
-
-removal_actions:
   - |
-    for item in ../core/phpunit.xml ../core/.env ../.gitignore; do 
-      if grep '#ddev-generated' ${item} >/dev/null; then
-        rm -f ${item}
-      fi
-    done
-  - rm -rf ../test_output
-  - ddev exec sudo apt update
-  # Revert back to default versions.
-  - ddev exec sudo apt install chromium-common chromium-driver -y
+    if [ -d "../web/core" ]; then
+      cp core-dev/.env ../web/core/.env
+      ddev exec -d /var/www/html/web/core yarn
+    else
+      cp core-dev/.env ../core/.env
+      ddev exec -d /var/www/html/core yarn
+    fi
+  - echo "Restarting DDEV and pulling selenium/standalone-chromium image, this may take some time..."
+  - ddev restart

@@ -23,7 +23,7 @@ ddev drupal list
 ddev drupal install standard
 
 # Run PHPUnit tests
-ddev phpunit core/modules/sdc
+ddev phpunit core/modules/announcements_feed
 
 # Run Nightwatch tests (currently only runs on Chrome)
 ddev nightwatch --tag core

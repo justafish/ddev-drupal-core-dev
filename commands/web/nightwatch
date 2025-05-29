@@ -7,4 +7,8 @@
 
 echo "Clearing old webdriver sessions"
 curl -f -s http://chrome:4444/status | jq -r '.value.nodes[].slots[].session.sessionId' | while read -r session; do if [ "$session" != "null" ]; then curl -X DELETE "http://chrome:4444/session/$session"; fi; done
-cd core && yarn test:nightwatch "$@"
+CORE_FOLDER=core
+if [ -d "web/core" ]; then
+  CORE_FOLDER=web/core
+fi
+cd $CORE_FOLDER && yarn test:nightwatch "$@"
