@@ -18,15 +18,15 @@ setup() {
   ddev delete -Oy "${PROJNAME}" >/dev/null 2>&1 || true
   composer create-project drupal/recommended-project ${TESTDIR}
   cd "${TESTDIR}"
-  composer install
   run ddev config --project-name="${PROJNAME}" --project-tld=ddev.site
   assert_success
   run ddev start -y
+  run ddev composer install
   assert_success
 }
 
 health_checks() {
-  ddev exec "curl -s chrome:7900" | grep "noVNC"
+  ddev exec "curl -s chrome:7900" | grep -q "noVNC"
   ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
 }
 
