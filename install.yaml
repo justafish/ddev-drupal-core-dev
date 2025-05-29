@@ -26,20 +26,16 @@ project_files:
   - core-dev/src/Command/ModuleInstallCommand.php
 
 post_install_actions:
-  - |
-    if [ -d "../web/core" ]; then
-      cp core-dev/.env ../web/core/.env
-    else
-      cp core-dev/.env ../core/.env
-    fi
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
   - |
     if [ -d "../web/core" ]; then
-      ddev exec -d web/core yarn
+      cp core-dev/.env ../web/core/.env
+      ddev exec -d /var/www/html/web/core yarn
     else
-      ddev exec -d core yarn
+      cp core-dev/.env ../core/.env
+      ddev exec -d /var/www/html/core yarn
     fi
   - echo "Restarting DDEV and pulling selenium/standalone-chromium image, this may take some time..."
   - ddev restart
