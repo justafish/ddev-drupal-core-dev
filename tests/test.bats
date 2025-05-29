@@ -43,11 +43,13 @@ health_checks() {
   cd "${TESTDIR_COMPOSER}"
   ddev exec "curl -s chrome:7900" | grep -q "noVNC"
   ddev phpunit web/core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev phpunit web/core/modules/system/tests/src/FunctionalJavascript/FrameworkTest.php
   ddev nightwatch tests/Drupal/Nightwatch/Tests/loginTest.js
 
   cd "${TESTDIR_CHECKOUT}"
   ddev exec "curl -s chrome:7900" | grep -q "noVNC"
   ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev phpunit core/modules/system/tests/src/FunctionalJavascript/FrameworkTest.php
   ddev nightwatch tests/Drupal/Nightwatch/Tests/loginTest.js
 }
 
