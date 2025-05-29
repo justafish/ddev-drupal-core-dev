@@ -39,6 +39,9 @@ teardown() {
 @test "install from directory" {
   set -eu -o pipefail
   echo "# ddev add-on get ${DIR} with project ${PROJNAME} in $(pwd)" >&3
+  pwd
+  ls -lha
+  echo "$TESTDIR"
   run ddev add-on get "${DIR}"
   assert_success
   run ddev restart -y
