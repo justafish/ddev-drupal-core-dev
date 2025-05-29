@@ -8,8 +8,8 @@ setup() {
   bats_load_library bats-support
 
   export DIR="$(cd "$(dirname "${BATS_TEST_FILENAME}")/.." >/dev/null 2>&1 && pwd)"
-  export PROJNAME_COMPOSER="test-$(basename "${GITHUB_REPO}")-composer"
-  export PROJNAME_CHECKOUT="test-$(basename "${GITHUB_REPO}")-checkout"
+  export PROJNAME_COMPOSER="test-core-composer"
+  export PROJNAME_CHECKOUT="test-corecheckout"
   mkdir -p ~/tmp
 
   export TESTDIR_CHECKOUT=$(mktemp -d ~/tmp/${PROJNAME_CHECKOUT}.XXXXXX)
@@ -18,31 +18,37 @@ setup() {
   export DDEV_NONINTERACTIVE=true
   export DDEV_NO_INSTRUMENTATION=true
 
-  composer create-project drupal/recommended-project ${TESTDIR_COMPOSER}
+  ddev delete -Oy ${PROJNAME_COMPOSER} >/dev/null 2>&1
+  ddev delete -Oy ${PROJNAME_CHECKOUT} >/dev/null 2>&1
+
+  composer create-project drupal/recommended-project ${TESTDIR_COMPOSER} --ignore-platform-reqs
   cd "${TESTDIR_COMPOSER}"
   run ddev config --project-name="${PROJNAME_COMPOSER}" --omit-containers=db --disable-settings-management
   assert_success
   run ddev start -y
-  run ddev composer install
   assert_success
+  run ddev composer install
+  run ddev composer require drupal/core-dev
 
   git clone --depth=1 https://git.drupalcode.org/project/drupal.git ${TESTDIR_CHECKOUT}
   cd "${TESTDIR_CHECKOUT}"
   run ddev config --project-name="${PROJNAME_CHECKOUT}" --omit-containers=db --disable-settings-management
   assert_success
   run ddev start -y
-  run ddev composer install
   assert_success
+  run ddev composer install
 }
 
 health_checks() {
   cd "${TESTDIR_COMPOSER}"
-  run ddev exec "curl -s chrome:7900" | grep -q "noVNC"
-  run ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev exec "curl -s chrome:7900" | grep -q "noVNC"
+  ddev phpunit web/core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev nightwatch tests/Drupal/Nightwatch/Tests/loginTest.js
 
   cd "${TESTDIR_CHECKOUT}"
-  run ddev exec "curl -s chrome:7900" | grep -q "noVNC"
-  run ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev exec "curl -s chrome:7900" | grep -q "noVNC"
+  ddev phpunit core/tests/Drupal/Tests/Component/Datetime/DateTimePlusTest.php
+  ddev nightwatch tests/Drupal/Nightwatch/Tests/loginTest.js
 }
 
 teardown() {

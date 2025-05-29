@@ -11,7 +11,11 @@ if ! command -v phpunit >/dev/null; then
 fi
 echo "Clearing old webdriver sessions"
 curl -f -s http://chrome:4444/status | jq -r '.value.nodes[].slots[].session.sessionId' | while read -r session; do if [ "$session" != "null" ]; then curl -X DELETE "http://chrome:4444/session/$session"; fi; done
+CORE_FOLDER=core
+if [ -d "web/core" ]; then
+  CORE_FOLDER=web/core
+fi
 set -a
-source core/.env
+source $CORE_FOLDER/.env
 set +a
-phpunit -c core "$@"
+phpunit -c $CORE_FOLDER "$@"
