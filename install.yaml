@@ -35,6 +35,12 @@ post_install_actions:
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
-  - cd ../core && ddev yarn
+  - |
+    cd ../core && ddev yarn
+    if [ -d "../web/core" ]; then
+      ddev exec -d web/core yarn
+    else
+      ddev exec -d core yarn
+    fi
   - echo "Restarting DDEV and pulling selenium/standalone-chromium image, this may take some time..."
   - ddev restart
