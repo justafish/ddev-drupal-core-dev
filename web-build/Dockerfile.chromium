@@ -1,0 +1,9 @@
+#ddev-generated
+RUN sudo apt update -y \
+  && sudo apt remove chromium* -y \
+  && wget https://ftp.debian.org/debian/pool/main/c/chromium/chromium_136.0.7103.113-1~deb12u1_amd64.deb \
+  && wget https://ftp.debian.org/debian/pool/main/c/chromium/chromium-common_136.0.7103.113-1~deb12u1_amd64.deb \
+  && wget https://ftp.debian.org/debian/pool/main/c/chromium/chromium-driver_136.0.7103.113-1~deb12u1_amd64.deb \
+  && sudo apt install ./chromium*.deb -y \
+  && sudo apt-mark hold chromium chromium-common chromium-driver \
+  && rm -f chromium*.deb

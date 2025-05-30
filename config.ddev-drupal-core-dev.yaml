@@ -8,4 +8,3 @@ upload_dirs:
 # but with DDEV + mutagen that isn't possible.
 # so just redirect the upload_dirs.
     - .ddev/tmp
-webimage_extra_packages: ["chromium-common=136.0.7103.113-1~deb12u1", "chromium-driver=136.0.7103.113-1~deb12u1"]
