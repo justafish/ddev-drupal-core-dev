@@ -75,4 +75,24 @@ teardown() {
   assert_success
 
   health_checks
+
+  cd ${TESTDIR_COMPOSER}
+  run ddev restart
+  assert_success
+
+  cd ${TESTDIR_CHECKOUT}
+  run ddev restart
+  assert_success
+
+  health_checks
+
+  cd ${TESTDIR_COMPOSER}
+  echo "# ddev add-on remove ddev-drupal-core-dev with project ${PROJNAME_COMPOSER} in $(pwd)" >&3
+  run ddev add-on remove ddev-drupal-core-dev
+  assert_success
+
+  cd ${TESTDIR_CHECKOUT}
+  echo "# ddev add-on remove ddev-drupal-core-dev with project ${PROJNAME_CHECKOUT} in $(pwd)" >&3
+  run ddev add-on remove ddev-drupal-core-dev
+  assert_success
 }

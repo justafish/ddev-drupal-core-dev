@@ -5,6 +5,7 @@ name: ddev-drupal-core-dev
 project_files:
   - config.ddev-drupal-core-dev.yaml
   - docker-compose.core-dev-selenium.yaml
+  - web-build/Dockerfile.chromium
   - commands/web/drupal
   - commands/web/phpunit
   - commands/web/nightwatch
@@ -30,7 +31,11 @@ post_install_actions:
   - mkdir -p ../test_output
   - chmod +w ../test_output
   - |
-    if [ -d "../web/core" ]; then
+    if ! ddev status | grep -q "chrome:4444"; then
+      ddev start
+    fi
+  - |
+    if [ -d "../web" ]; then
       cp core-dev/.env ../web/core/.env
       ddev exec -d /var/www/html/web/core yarn
     else
