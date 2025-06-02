@@ -1,5 +1,4 @@
 #ddev-generated
-ARG TARGETARCH
 RUN sudo apt update -y \
   && sudo apt remove chromium* -y \
   && ARCH=$(dpkg --print-architecture) \
