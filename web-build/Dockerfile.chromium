@@ -2,9 +2,9 @@
 RUN sudo apt update -y \
   && sudo apt remove chromium* -y \
   && ARCH=$(dpkg --print-architecture) \
-  && wget https://snapshot.debian.org/archive/debian/20250601T025158Z/pool/main/c/chromium/chromium_136.0.7103.113-1~deb12u1_${ARCH}.deb \
-  && wget https://snapshot.debian.org/archive/debian/20250601T025158Z/pool/main/c/chromium/chromium-common_136.0.7103.113-1~deb12u1_${ARCH}.deb \
-  && wget https://snapshot.debian.org/archive/debian/20250601T025158Z/pool/main/c/chromium/chromium-driver_136.0.7103.113-1~deb12u1_${ARCH}.deb \
+  && wget https://snapshot.debian.org/archive/debian/20250612T023025Z/pool/main/c/chromium/chromium_137.0.7151.68-1~deb12u1_${ARCH}.deb \
+  && wget https://snapshot.debian.org/archive/debian/20250612T023025Z/pool/main/c/chromium/chromium-common_137.0.7151.68-1~deb12u1_${ARCH}.deb \
+  && wget https://snapshot.debian.org/archive/debian/20250612T023025Z/pool/main/c/chromium/chromium-driver_137.0.7151.68-1~deb12u1_${ARCH}.deb \
   && sudo apt install ./chromium*.deb -y \
   && sudo apt-mark hold chromium chromium-common chromium-driver \
   && rm -f chromium*.deb
