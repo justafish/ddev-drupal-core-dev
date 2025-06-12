@@ -2,7 +2,8 @@
 
 This is a DDEV addon for doing Drupal core development.
 
-We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack) (but please try and keep work and feature requests in Issues where it's visible to all 🙏)
+We're in #ddev-for-core-dev on [Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack) (but please try and keep work
+and feature requests in Issues where it's visible to all 🙏)
 
 ## Installation
 ```
@@ -15,6 +16,10 @@ ddev add-on get justafish/ddev-drupal-core-dev
 # See included commands
 ddev drupal list
 ```
+
+The `drupal` command is an extension of core's [`drupal`](https://git.drupalcode.org/project/drupal/-/blob/11.x/core/scripts/drupal?ref_type=heads)
+command. This allows you to perform some basic tasks without needing to install
+`drush` which will alter your composer dependencies.
 
 ## Examples
 ```
