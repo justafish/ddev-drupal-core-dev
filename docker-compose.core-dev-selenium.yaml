@@ -2,7 +2,7 @@
 services:
   chrome:
     container_name: ddev-${DDEV_SITENAME}-chrome
-    image: selenium/standalone-chromium:137.0.7151.68
+    image: selenium/standalone-chromium:138.0.7204.157
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: $DDEV_APPROOT
