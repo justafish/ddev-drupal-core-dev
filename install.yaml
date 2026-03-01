@@ -1,5 +1,3 @@
-# Details about the install.yaml file are at https://ddev.readthedocs.io/en/latest/users/extend/additional-services/#sections-and-features-of-ddev-get-add-on-installyaml
-
 name: ddev-drupal-core-dev
 
 project_files:
@@ -26,12 +24,15 @@ project_files:
   - core-dev/src/Command/LintCommand.php
   - core-dev/src/Command/ModuleInstallCommand.php
 
+ddev_version_constraint: '>= v1.24.10'
+
 post_install_actions:
   - cp core-dev/gitignore ../.gitignore
   - mkdir -p ../test_output
   - chmod +w ../test_output
   - |
     if ! ddev status | grep -q "chrome:4444"; then
+      echo "Starting the project..."
       ddev start
     fi
   - |

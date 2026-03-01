@@ -1,10 +1,15 @@
 #ddev-generated
-RUN sudo apt update -y \
-  && sudo apt remove chromium* -y \
-  && ARCH=$(dpkg --print-architecture) \
-  && wget https://snapshot.debian.org/archive/debian/20250612T023025Z/pool/main/c/chromium/chromium_137.0.7151.68-1~deb12u1_${ARCH}.deb \
-  && wget https://snapshot.debian.org/archive/debian/20250612T023025Z/pool/main/c/chromium/chromium-common_137.0.7151.68-1~deb12u1_${ARCH}.deb \
-  && wget https://snapshot.debian.org/archive/debian/20250612T023025Z/pool/main/c/chromium/chromium-driver_137.0.7151.68-1~deb12u1_${ARCH}.deb \
-  && sudo apt install ./chromium*.deb -y \
-  && sudo apt-mark hold chromium chromium-common chromium-driver \
-  && rm -f chromium*.deb
+RUN <<EOF
+    set -eu -o pipefail
+    apt-get update || true
+    apt-get remove -y chromium* || true
+    SNAPSHOT_URL="https://snapshot.debian.org/archive/debian/20260301T083349Z/pool/main/c/chromium"
+    CHROMIUM_VERSION="143.0.7499.169-1"
+    source /etc/os-release
+    for pkg in chromium chromium-common chromium-driver chromium-sandbox; do
+        wget ${SNAPSHOT_URL}/${pkg}_${CHROMIUM_VERSION}~deb${VERSION_ID}u1_${TARGETARCH}.deb
+    done
+    apt-get install -y --no-install-recommends ./*.deb
+    rm -f ./*.deb
+    rm -rf /var/lib/apt/lists/*
+EOF
