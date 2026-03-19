@@ -28,6 +28,9 @@ setup() {
   run ddev start -y
   assert_success
   run ddev composer install
+  assert_success
+  run ddev composer require drupal/core-dev -W
+  assert_success
   run ddev composer require drupal/core-dev
 
   git clone --depth=1 https://git.drupalcode.org/project/drupal.git ${TESTDIR_CHECKOUT}
@@ -37,6 +40,7 @@ setup() {
   run ddev start -y
   assert_success
   run ddev composer install
+  assert_success
 }
 
 health_checks() {
