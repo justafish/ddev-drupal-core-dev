@@ -40,20 +40,23 @@ $loader->addPsr4('DrupalCoreDev\\', $composer_root . '/.ddev/core-dev/src/');
 
 $application = new Application('drupal', \Drupal::VERSION);
 
-$application->add(new InstallCommand($loader));
-$application->add(new UninstallCommand());
-$application->add(new ModuleInstallCommand($loader));
-$application->add(new CacheCommand($loader));
-$application->add(new AdminLoginCommand($loader));
-$application->add(new GenerateTheme());
-$application->add(new TestCommand());
-$application->add(new TestExtensionsCommand());
-$application->add(new TestBrowserCommand());
-$application->add(new LintPhpCsCommand());
-$application->add(new LintPhpStanCommand());
-$application->add(new LintCssCommand());
-$application->add(new LintJsCommand());
-$application->add(new LintCspellCommand());
-$application->add(new LintCommand());
+// Use ->addCommands() which works in different versions of symfony/console.
+$application->addCommands([
+  new InstallCommand($loader),
+  new UninstallCommand(),
+  new ModuleInstallCommand($loader),
+  new CacheCommand($loader),
+  new AdminLoginCommand($loader),
+  new GenerateTheme(),
+  new TestCommand(),
+  new TestExtensionsCommand(),
+  new TestBrowserCommand(),
+  new LintPhpCsCommand(),
+  new LintPhpStanCommand(),
+  new LintCssCommand(),
+  new LintJsCommand(),
+  new LintCspellCommand(),
+  new LintCommand(),
+]);
 
 $application->run();
