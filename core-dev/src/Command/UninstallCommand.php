@@ -12,7 +12,7 @@ class UninstallCommand extends Command {
     /**
      * {@inheritdoc}
      */
-    protected function configure() {
+    protected function configure(): void {
       $this->setName('uninstall')
           ->setDescription('Uninstall Drupal by deleting settings.');
     }
