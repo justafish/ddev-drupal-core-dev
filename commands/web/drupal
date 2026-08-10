@@ -14,9 +14,9 @@
  */
 
 use Drupal\Core\Command\GenerateTheme;
-use Drupal\Core\Command\InstallCommand;
 use DrupalCoreDev\Command\AdminLoginCommand;
 use DrupalCoreDev\Command\CacheCommand;
+use DrupalCoreDev\Command\InstallCommand;
 use DrupalCoreDev\Command\LintCommand;
 use DrupalCoreDev\Command\LintCspellCommand;
 use DrupalCoreDev\Command\LintCssCommand;
@@ -40,23 +40,22 @@ $loader->addPsr4('DrupalCoreDev\\', $composer_root . '/.ddev/core-dev/src/');
 
 $application = new Application('drupal', \Drupal::VERSION);
 
-// Use ->addCommands() which works in different versions of symfony/console.
 $application->addCommands([
-  new InstallCommand($loader),
-  new UninstallCommand(),
-  new ModuleInstallCommand($loader),
-  new CacheCommand($loader),
-  new AdminLoginCommand($loader),
-  new GenerateTheme(),
-  new TestCommand(),
-  new TestExtensionsCommand(),
-  new TestBrowserCommand(),
-  new LintPhpCsCommand(),
-  new LintPhpStanCommand(),
-  new LintCssCommand(),
-  new LintJsCommand(),
-  new LintCspellCommand(),
-  new LintCommand(),
+    new InstallCommand($loader),
+    new UninstallCommand(),
+    new ModuleInstallCommand($loader),
+    new CacheCommand($loader),
+    new AdminLoginCommand($loader),
+    new GenerateTheme(),
+    new TestCommand(),
+    new TestExtensionsCommand(),
+    new TestBrowserCommand(),
+    new LintPhpCsCommand(),
+    new LintPhpStanCommand(),
+    new LintCssCommand(),
+    new LintJsCommand(),
+    new LintCspellCommand(),
+    new LintCommand(),
 ]);
 
 $application->run();

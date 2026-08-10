@@ -27,6 +27,10 @@ command. This allows you to perform some basic tasks without needing to install
 # Run "ddev drupal install" to see all available options
 ddev drupal install standard
 
+# Reset the site so it can be installed again
+# Use this rather than deleting sites/default/files and settings.php by hand
+ddev drupal uninstall
+
 # Run PHPUnit tests
 ddev phpunit core/modules/announcements_feed
 
@@ -52,7 +56,7 @@ ddev nightwatch --skiptags core
 
 Run a single test
 ```
-ddev nightwatch tests/Drupal/Nightwatch/Tests/exampleTest.js
+ddev nightwatch tests/Drupal/Nightwatch/Tests/a11yTestAdmin.js
 ```
 
 a11y tests for both the admin and default themes

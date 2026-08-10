@@ -14,6 +14,7 @@ project_files:
   - core-dev/src/Command/AdminLoginCommand.php
   - core-dev/src/Command/BootCommand.php
   - core-dev/src/Command/CacheCommand.php
+  - core-dev/src/Command/InstallCommand.php
   - core-dev/src/Command/TestCommand.php
   - core-dev/src/Command/TestBrowserCommand.php
   - core-dev/src/Command/TestExtensionsCommand.php

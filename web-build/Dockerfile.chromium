@@ -16,3 +16,58 @@ RUN apt-get install -y --no-install-recommends \
     libflac12 \
     libopenh264-7 \
     && rm -rf /var/lib/apt/lists/*
+
+# 3. Apt config for the layers below. The snapshot repos above are "expired" by design, so
+# make the valid-until exemption permanent rather than a per-command flag. The pins make the
+# bookworm snapshot a last resort: anything trixie can satisfy comes from trixie, so we only
+# borrow from bookworm where chromium 143 genuinely needs it (the sonames pinned above).
+RUN echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until && \
+    printf 'Package: *\nPin: release n=bookworm\nPin-Priority: 1\n' \
+        > /etc/apt/preferences.d/bookworm-last-resort && \
+    printf 'Package: *\nPin: release n=bookworm-security\nPin-Priority: 1\n' \
+        >> /etc/apt/preferences.d/bookworm-last-resort
+
+# 4. Browser system libraries for Playwright, i.e. the "tools" and "chromium" entries of the
+# debian13-x64 map in playwright-core 1.62.1 (lib/server/registry/nativeDeps.ts). Listed
+# explicitly instead of calling `npx playwright install-deps` so the image does not depend on
+# whatever npm serves at build time, matching how chromium and the apt snapshot are pinned above.
+# To regenerate after a Playwright bump:
+#   docker run --rm ddev/ddev-webserver:<tag> npx --yes playwright@<version> install-deps --dry-run
+# Most of the chromium entries are already satisfied by the Debian chromium package installed
+# above; the four libatk/libasound names resolve to Debian's t64 transition packages, which
+# provide the same sonames and leave chromium itself untouched.
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    xvfb \
+    fonts-noto-color-emoji \
+    fonts-unifont \
+    libfontconfig1 \
+    libfreetype6 \
+    xfonts-scalable \
+    fonts-liberation \
+    fonts-ipafont-gothic \
+    fonts-wqy-zenhei \
+    fonts-tlwg-loma-otf \
+    fonts-freefont-ttf \
+    libasound2t64 \
+    libatk-bridge2.0-0t64 \
+    libatk1.0-0t64 \
+    libatspi2.0-0t64 \
+    libcairo2 \
+    libcups2t64 \
+    libdbus-1-3 \
+    libdrm2 \
+    libgbm1 \
+    libglib2.0-0t64 \
+    libnspr4 \
+    libnss3 \
+    libpango-1.0-0 \
+    libx11-6 \
+    libxcb1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxkbcommon0 \
+    libxrandr2 \
+    && rm -rf /var/lib/apt/lists/*
