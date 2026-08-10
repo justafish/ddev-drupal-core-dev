@@ -12,7 +12,7 @@ class ModuleInstallCommand extends BootCommand {
     /**
      * {@inheritdoc}
      */
-    protected function configure() {
+    protected function configure(): void {
       parent::configure();
       $this->setName('module:install')
           ->setDescription('Install modules')

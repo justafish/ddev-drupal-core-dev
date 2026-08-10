@@ -11,7 +11,7 @@ class AdminLoginCommand extends BootCommand {
     /**
      * {@inheritdoc}
      */
-    protected function configure() {
+    protected function configure(): void {
       $this->setName('login')
           ->setDescription('Generates a one-time login link for User 1');
 

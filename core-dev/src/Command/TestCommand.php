@@ -14,7 +14,7 @@ class TestCommand extends Command {
     /**
      * {@inheritdoc}
      */
-    protected function configure() {
+    protected function configure(): void {
         $this->setName('test')
           ->setDescription('Run all core tests using the run-tests.sh script. You probably don\'t want to do this - instead run PHPUnit directly on selected tests e.g. ddev phpunit core/modules/sdc/tests');
 
