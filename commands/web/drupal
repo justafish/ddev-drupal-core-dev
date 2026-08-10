@@ -14,9 +14,9 @@
  */
 
 use Drupal\Core\Command\GenerateTheme;
-use Drupal\Core\Command\InstallCommand;
 use DrupalCoreDev\Command\AdminLoginCommand;
 use DrupalCoreDev\Command\CacheCommand;
+use DrupalCoreDev\Command\InstallCommand;
 use DrupalCoreDev\Command\LintCommand;
 use DrupalCoreDev\Command\LintCspellCommand;
 use DrupalCoreDev\Command\LintCssCommand;
